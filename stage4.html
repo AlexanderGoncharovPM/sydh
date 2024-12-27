@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тест Юнга 16 асоціацій - Етап 4</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Етап 4: 4 асоціації третього рівня</h1>
+        <p>Повторіть те саме - з'єднайте слова попарно, перше з другим, третє з четвертим.</p>
+        <form id="stage4-form">
+            <div>
+                <p id="info4_1">Асоціація 1 та 2:</p>
+                <input type="text" id="assoc4_1" name="assoc4_1" required>
+            </div>
+            <div>
+                <p id="info4_2">Асоціація 3 та 4:</p>
+                <input type="text" id="assoc4_2" name="assoc4_2" required>
+            </div>
+            <div>
+                <p id="info4_3">Асоціація 5 та 6:</p>
+                <input type="text" id="assoc4_3" name="assoc4_3" required>
+            </div>
+            <div>
+                <p id="info4_4">Асоціація 7 та 8:</p>
+                <input type="text" id="assoc4_4" name="assoc4_4" required>
+            </div>
+            <button type="submit">Далі</button>
+        </form>
+    </div>
+
+    <script>
+        // Завантажуємо асоціації 3 рівня з localStorage
+        const associations3 = JSON.parse(localStorage.getItem('associations3'));
+
+        if (associations3) {
+            // Заповнюємо інформаційні поля на основі асоціацій з 3-го етапу
+            document.getElementById('info4_1').innerText = 'Асоціація 1 та 2: ' + associations3[0] + ' - ' + associations3[1];
+            document.getElementById('info4_2').innerText = 'Асоціація 3 та 4: ' + associations3[2] + ' - ' + associations3[3];
+            document.getElementById('info4_3').innerText = 'Асоціація 5 та 6: ' + associations3[4] + ' - ' + associations3[5];
+            document.getElementById('info4_4').innerText = 'Асоціація 7 та 8: ' + associations3[6] + ' - ' + associations3[7];
+        } else {
+            // Якщо асоціації не знайдено, вивести помилку
+            alert("Дані з Етапу 3 не знайдено. Перевірте, чи були заповнені асоціації на попередньому етапі.");
+        }
+
+        document.getElementById('stage4-form').addEventListener('submit', function (event) {
+            event.preventDefault();
+            
+            const associations4 = [];
+            associations4.push(document.getElementById('assoc4_1').value);
+            associations4.push(document.getElementById('assoc4_2').value);
+            associations4.push(document.getElementById('assoc4_3').value);
+            associations4.push(document.getElementById('assoc4_4').value);
+
+            // Збереження асоціацій четвертого рівня в localStorage
+            localStorage.setItem('associations4', JSON.stringify(associations4));
+
+            // Перехід до Етапу 5
+            window.location.href = "stage5.html";
+        });
+    </script>
+</body>
+</html>

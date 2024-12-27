@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Результати Тесту Юнга</title>
+    <style>
+        .result-block {
+            margin-bottom: 20px;
+        }
+        .result-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .result-item {
+            margin: 5px 0;
+        }
+        .info-block {
+            margin-bottom: 15px;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Результати Тесту Юнга</h1>
+
+        <!-- Виведення запиту -->
+        <p><strong>Запит:</strong> <span id="query-display"></span></p>
+
+        <!-- Блоки для виведення результатів -->
+        <div id="results-blocks"></div>
+    </div>
+
+    <script>
+        // Завантажуємо дані з localStorage
+        const query = localStorage.getItem('query'); // Запит
+        const associations2 = JSON.parse(localStorage.getItem('associations2')); // 2 рівень (16 асоціацій з 2-го етапу)
+        const associations3 = JSON.parse(localStorage.getItem('associations3')); // 3 рівень (8 асоціацій з 3-го етапу)
+        const associations4 = JSON.parse(localStorage.getItem('associations4')); // 4 рівень (4 асоціації з 4-го етапу)
+        const associations5 = JSON.parse(localStorage.getItem('associations5')); // 5 рівень (2 асоціації з 5-го етапу)
+        const associations6 = JSON.parse(localStorage.getItem('associations6')); // 6 рівень (1 асоціація з 6-го етапу)
+
+        // Виведення запиту
+        document.getElementById('query-display').innerText = query;
+
+        // Функція для перевірки і виведення асоціацій
+        function createResultBlock(title, associations, infoText) {
+            const block = document.createElement('div');
+            block.classList.add('result-block');
+
+            // Інформаційне поле для кожного рівня
+            const infoBlock = document.createElement('div');
+            infoBlock.classList.add('info-block');
+            infoBlock.innerHTML = `<strong>Інформація до рівня:</strong> ${infoText}`;
+            block.appendChild(infoBlock);
+
+            const blockTitle = document.createElement('div');
+            blockTitle.classList.add('result-title');
+            blockTitle.innerText = title;
+            block.appendChild(blockTitle);
+
+            // Перевірка наявності асоціацій для даного рівня
+            if (Array.isArray(associations) && associations.length > 0) {
+                const associationsText = associations.join(', ').replace(/11111/g, '-'); // Заміна значень "11111" на "-"
+                const item = document.createElement('div');
+                item.classList.add('result-item');
+                item.innerText = associationsText;
+                block.appendChild(item);
+            } else {
+                const item = document.createElement('div');
+                item.classList.add('result-item');
+                item.innerText = '-'; // Якщо дані не знайдено
+                block.appendChild(item);
+            }
+
+            document.getElementById('results-blocks').appendChild(block);
+        }
+
+        // Копіювання асоціацій в localStorage
+        const associations = ['упЦ', 'ЙУА', 'й', 'АЙУ', 'йАУ', 'ЙАУ', 'ай', 'А']; // Приклад масиву асоціацій
+        localStorage.setItem('associations2', JSON.stringify(associations)); // Копіювання до associations2
+
+        // Перевірка і виведення результатів для кожного рівня
+        if (associations2) {
+            createResultBlock('2 рівень (16 асоціацій з 2-го етапу)', associations2, "Цей рівень показує ваші стереотипи та переконання.");
+        } else {
+            alert("Дані з 2-го етапу не знайдено.");
+        }
+
+        if (associations3) {
+            createResultBlock('3 рівень (8 асоціацій з 3-го етапу)', associations3, "Цей рівень показує те, що ви думаєте насправді.");
+        }
+
+        if (associations4) {
+            createResultBlock('4 рівень (4 асоціації з 4-го етапу)', associations4, "Третій рівень — це емоції, які ви відчуваєте.");
+        }
+
+        if (associations5) {
+            createResultBlock('5 рівень (2 асоціації з 5-го етапу)', associations5, "Четвертий рівень — це корінь проблеми.");
+        }
+
+        if (associations6) {
+            createResultBlock('6 рівень (1 асоціація з 6-го етапу)', associations6, "П\'ятий рівень — це підсвідомі підказки.");
+        }
+    </script>
+</body>
+</html>

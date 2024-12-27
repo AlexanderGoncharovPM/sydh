@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тест Юнга 16 асоціацій - Етап 6</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Етап 6: З'єднання останніх асоціацій</h1>
+        <p>Повторіть те саме - з'єднайте слова попарно, перше з другим.</p>
+        <form id="stage6-form">
+            <div>
+                <p id="info6_1">Асоціація 1 та 2:</p>
+                <input type="text" id="assoc6_1" name="assoc6_1" required>
+            </div>
+            <button type="submit">Далі</button>
+        </form>
+    </div>
+
+    <script>
+        // Завантажуємо асоціації 5 рівня з localStorage
+        const associations5 = JSON.parse(localStorage.getItem('associations5'));
+
+        if (associations5) {
+            // Заповнюємо інформаційне поле на основі асоціацій з 5-го етапу
+            document.getElementById('info6_1').innerText = 'Асоціація 1 та 2: ' + associations5[0] + ' - ' + associations5[1];
+        } else {
+            // Якщо асоціації не знайдено, вивести помилку або виконати іншу логіку
+            alert("Дані з Етапу 5 не знайдено. Перевірте, чи були заповнені асоціації на попередньому етапі.");
+        }
+
+        document.getElementById('stage6-form').addEventListener('submit', function (event) {
+            event.preventDefault();
+            
+            const associations6 = [];
+            associations6.push(document.getElementById('assoc6_1').value);
+
+            // Збереження асоціацій шостого рівня в localStorage
+            localStorage.setItem('associations6', JSON.stringify(associations6));
+
+            // Перехід до результатів
+            window.location.href = "results.html";
+        });
+    </script>
+</body>
+</html>

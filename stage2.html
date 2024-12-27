@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тест Юнга 16 асоціацій - Етап 2</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Етап 2: 16 асоціацій</h1>
+        <p>Вдихніть-видихніть і подумайте про запит. Подумайте про це поняття як про те, що має відношення особисто до вас, і як про абстрактне поняття. А тепер запишіть 16 асоціацій до цього слова, які приходять до вас на думку.</p>
+        <form id="associations-form">
+            <div>
+                <label for="assoc1">Асоціація 1:</label>
+                <input type="text" id="assoc1" name="assoc1" required>
+            </div>
+            <div>
+                <label for="assoc2">Асоціація 2:</label>
+                <input type="text" id="assoc2" name="assoc2" required>
+            </div>
+            <div>
+                <label for="assoc3">Асоціація 3:</label>
+                <input type="text" id="assoc3" name="assoc3" required>
+            </div>
+            <div>
+                <label for="assoc4">Асоціація 4:</label>
+                <input type="text" id="assoc4" name="assoc4" required>
+            </div>
+            <div>
+                <label for="assoc5">Асоціація 5:</label>
+                <input type="text" id="assoc5" name="assoc5" required>
+            </div>
+            <div>
+                <label for="assoc6">Асоціація 6:</label>
+                <input type="text" id="assoc6" name="assoc6" required>
+            </div>
+            <div>
+                <label for="assoc7">Асоціація 7:</label>
+                <input type="text" id="assoc7" name="assoc7" required>
+            </div>
+            <div>
+                <label for="assoc8">Асоціація 8:</label>
+                <input type="text" id="assoc8" name="assoc8" required>
+            </div>
+            <div>
+                <label for="assoc9">Асоціація 9:</label>
+                <input type="text" id="assoc9" name="assoc9" required>
+            </div>
+            <div>
+                <label for="assoc10">Асоціація 10:</label>
+                <input type="text" id="assoc10" name="assoc10" required>
+            </div>
+            <div>
+                <label for="assoc11">Асоціація 11:</label>
+                <input type="text" id="assoc11" name="assoc11" required>
+            </div>
+            <div>
+                <label for="assoc12">Асоціація 12:</label>
+                <input type="text" id="assoc12" name="assoc12" required>
+            </div>
+            <div>
+                <label for="assoc13">Асоціація 13:</label>
+                <input type="text" id="assoc13" name="assoc13" required>
+            </div>
+            <div>
+                <label for="assoc14">Асоціація 14:</label>
+                <input type="text" id="assoc14" name="assoc14" required>
+            </div>
+            <div>
+                <label for="assoc15">Асоціація 15:</label>
+                <input type="text" id="assoc15" name="assoc15" required>
+            </div>
+            <div>
+                <label for="assoc16">Асоціація 16:</label>
+                <input type="text" id="assoc16" name="assoc16" required>
+            </div>
+            <button type="submit">Далі</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('associations-form').addEventListener('submit', function (event) {
+            event.preventDefault();
+            
+            const associations = [];
+            for (let i = 1; i <= 16; i++) {
+                associations.push(document.getElementById('assoc' + i).value);
+            }
+
+            // Збереження асоціацій в localStorage
+            localStorage.setItem('associations2', JSON.stringify(associations));
+
+            // Перехід до наступного етапу (Етап 3)
+            window.location.href = "stage3.html";
+        });
+    </script>
+</body>
+</html>

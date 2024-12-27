@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тест Юнга 16 асоціацій</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Тест Юнга 16 асоціацій</h1>
+        <p>Створіть запит — опишіть словом чи словосполученням проблему чи завдання, що вас хвилює, і вирішення якої покращить якість вашого життя у найближчій перспективі.</p>
+        <p>Наприклад, ви не можете сісти за написання диплома — тоді візьміть слово «диплом». Ваша поточна робота почала викликати негатив? Візьміть слово "робота".</p>
+        <form id="query-form">
+            <label for="query">Ваш запит:</label>
+            <input type="text" id="query" name="query" required>
+            <button type="submit">Далі</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('query-form').addEventListener('submit', function (event) {
+            event.preventDefault();
+            const query = document.getElementById('query').value;
+            localStorage.setItem('query', query);  // збереження запиту
+            window.location.href = "stage2.html";   // Перехід до другого етапу
+        });
+    </script>
+</body>
+</html>

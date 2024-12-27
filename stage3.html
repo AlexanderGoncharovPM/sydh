@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тест Юнга 16 асоціацій - Етап 3</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Етап 3: 8 асоціацій другого рівня</h1>
+        <p>Тепер з'єднайте слова попарно, перше з другим, третє з четвертим тощо.</p>
+        <form id="stage3-form">
+            <div>
+                <p id="info3_1">Асоціація 1 та 2:</p>
+                <input type="text" id="assoc3_1" name="assoc3_1" required>
+            </div>
+            <div>
+                <p id="info3_2">Асоціація 3 та 4:</p>
+                <input type="text" id="assoc3_2" name="assoc3_2" required>
+            </div>
+            <div>
+                <p id="info3_3">Асоціація 5 та 6:</p>
+                <input type="text" id="assoc3_3" name="assoc3_3" required>
+            </div>
+            <div>
+                <p id="info3_4">Асоціація 7 та 8:</p>
+                <input type="text" id="assoc3_4" name="assoc3_4" required>
+            </div>
+            <div>
+                <p id="info3_5">Асоціація 9 та 10:</p>
+                <input type="text" id="assoc3_5" name="assoc3_5" required>
+            </div>
+            <div>
+                <p id="info3_6">Асоціація 11 та 12:</p>
+                <input type="text" id="assoc3_6" name="assoc3_6" required>
+            </div>
+            <div>
+                <p id="info3_7">Асоціація 13 та 14:</p>
+                <input type="text" id="assoc3_7" name="assoc3_7" required>
+            </div>
+            <div>
+                <p id="info3_8">Асоціація 15 та 16:</p>
+                <input type="text" id="assoc3_8" name="assoc3_8" required>
+            </div>
+            <button type="submit">Далі</button>
+        </form>
+    </div>
+
+    <script>
+        // Завантажуємо асоціації 1 рівня з localStorage
+        const associations2 = JSON.parse(localStorage.getItem('associations2'));
+
+        if (associations2) {
+            // Заповнюємо інформаційні поля на основі асоціацій з 2-го етапу
+            document.getElementById('info3_1').innerText = 'Асоціація 1 та 2: ' + associations2[0] + ' - ' + associations2[1];
+            document.getElementById('info3_2').innerText = 'Асоціація 3 та 4: ' + associations2[2] + ' - ' + associations2[3];
+            document.getElementById('info3_3').innerText = 'Асоціація 5 та 6: ' + associations2[4] + ' - ' + associations2[5];
+            document.getElementById('info3_4').innerText = 'Асоціація 7 та 8: ' + associations2[6] + ' - ' + associations2[7];
+            document.getElementById('info3_5').innerText = 'Асоціація 9 та 10: ' + associations2[8] + ' - ' + associations2[9];
+            document.getElementById('info3_6').innerText = 'Асоціація 11 та 12: ' + associations2[10] + ' - ' + associations2[11];
+            document.getElementById('info3_7').innerText = 'Асоціація 13 та 14: ' + associations2[12] + ' - ' + associations2[13];
+            document.getElementById('info3_8').innerText = 'Асоціація 15 та 16: ' + associations2[14] + ' - ' + associations2[15];
+        } else {
+            alert("Дані з Етапу 2 не знайдено.");
+        }
+
+        document.getElementById('stage3-form').addEventListener('submit', function (event) {
+            event.preventDefault();
+            
+            const associations3 = [];
+            for (let i = 1; i <= 8; i++) {
+                associations3.push(document.getElementById('assoc3_' + i).value);
+            }
+
+            // Збереження асоціацій третього рівня в localStorage
+            localStorage.setItem('associations3', JSON.stringify(associations3));
+
+            // Перехід до наступного етапу (Етап 4)
+            window.location.href = "stage4.html";
+        });
+    </script>
+</body>
+</html>

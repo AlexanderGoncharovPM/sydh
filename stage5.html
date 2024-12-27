@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тест Юнга 16 асоціацій - Етап 5</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Етап 5: 2 асоціації четвертого рівня</h1>
+        <p>Повторіть те саме - з'єднайте слова попарно, перше з другим.</p>
+        <form id="stage5-form">
+            <div>
+                <p id="info5_1">Асоціація 1 та 2:</p>
+                <input type="text" id="assoc5_1" name="assoc5_1" required>
+            </div>
+            <div>
+                <p id="info5_2">Асоціація 3 та 4:</p>
+                <input type="text" id="assoc5_2" name="assoc5_2" required>
+            </div>
+            <button type="submit">Далі</button>
+        </form>
+    </div>
+
+    <script>
+        // Завантажуємо асоціації 4 рівня з localStorage
+        const associations4 = JSON.parse(localStorage.getItem('associations4'));
+
+        if (associations4) {
+            // Заповнюємо інформаційні поля на основі асоціацій з 4-го етапу
+            document.getElementById('info5_1').innerText = 'Асоціація 1 та 2: ' + associations4[0] + ' - ' + associations4[1];
+            document.getElementById('info5_2').innerText = 'Асоціація 3 та 4: ' + associations4[2] + ' - ' + associations4[3];
+        } else {
+            // Якщо асоціації не знайдено, вивести помилку
+            alert("Дані з Етапу 4 не знайдено. Перевірте, чи були заповнені асоціації на попередньому етапі.");
+        }
+
+        document.getElementById('stage5-form').addEventListener('submit', function (event) {
+            event.preventDefault();
+            
+            const associations5 = [];
+            associations5.push(document.getElementById('assoc5_1').value);
+            associations5.push(document.getElementById('assoc5_2').value);
+
+            // Збереження асоціацій п’ятого рівня в localStorage
+            localStorage.setItem('associations5', JSON.stringify(associations5));
+
+            // Перехід до Етапу 6
+            window.location.href = "stage6.html";
+        });
+    </script>
+</body>
+</html>
